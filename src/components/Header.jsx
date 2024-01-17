@@ -1,3 +1,3 @@
 export default function Header() {
-    return <h1>Catatan Belanjaku 📝</h1>;
+    return <h1>Catatan Belanja Ichaa 📝</h1>;
   }
