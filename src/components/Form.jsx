@@ -24,7 +24,7 @@ export default function Form({ onAddItem }) {
   
     return (
       <form className="add-form" onSubmit={handleSubmit}>
-        <h3>Hari ini belanja apa kita?</h3>
+        <h3>Hari ini belanja apa sayangg?</h3>
         <div>
           <select
             value={quantity}
