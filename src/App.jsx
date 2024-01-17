@@ -22,11 +22,22 @@ const groceryItems = [
 ];
 
 export default function App() {
+  const [items, setItems] = useState(groceryItems);
+
+
+  function handleAddItem(item) {
+    setItems([...items, item]);
+  }
+
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+
   return (
     <div className="app">
       <Header />
-      <Form />
-      <GroceryList />
+      <Form onAddItem={handleAddItem} />
+      <GroceryList items={items} onDeleteItem={handleDeleteItem} />
       <Footer />
     </div>
   );
@@ -36,25 +47,21 @@ function Header() {
   return <h1>Catatan Belanjaku 📝</h1>;
 }
 
-function Form() {
-
+function Form({onAddItem}) {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if(!name) return;
-    
-    const newItem = { name, quantity, checked: false, id: Date.now() };
+    if (!name) return;
 
-    console.log(newItem);
+    const newItem = { name, quantity, checked: false, id: Date.now() };
+    onAddItem(newItem);
 
     setName("");
     setQuantity(1);
-
   }
-
 
   const quantityNum = [...Array(20)].map((_, i) => (
     <option value={i + 1} key={i + 1}>
@@ -66,23 +73,31 @@ function Form() {
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>Hari ini belanja apa kita?</h3>
       <div>
-        <select value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}>
+        <select
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+        >
           {quantityNum}
         </select>
-        <input type="text" placeholder="nama barang..." value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          type="text"
+          placeholder="nama barang..."
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
       <button>Tambah</button>
     </form>
   );
 }
 
-function GroceryList() {
+function GroceryList({ items, onDeleteItem }) {
   return (
     <>
       <div className="list">
         <ul>
-          {groceryItems.map((item) => (
-            <Item item={item} key={item.id} />
+          {items.map((item) => (
+            <Item item={item} key={item.id} onDeleteItem={onDeleteItem}/>
           ))}
         </ul>
       </div>
@@ -98,14 +113,14 @@ function GroceryList() {
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
   return (
     <li key={item.id}>
       <input type="checkbox" />
       <span style={item.checked ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.name}
       </span>
-      <button>&times;</button>
+      <button onClick={() => onDeleteItem(item.id)}>&times;</button>
     </li>
   );
 }
