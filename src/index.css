@@ -141,3 +141,90 @@ button {
   font-size: 2rem;
   font-weight: bold;
 }
+
+
+/* Tablet */
+@media (max-width: 768px) {
+  body {
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 5rem;
+    padding: 2rem 0 1rem;
+  }
+
+  .add-form h3 {
+    font-size: 2rem;
+  }
+
+  button,
+  select,
+  input {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+  }
+
+  .list li {
+    font-size: 3rem;
+  }
+
+  .list li button {
+    font-size: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .actions button,
+  .actions select {
+    padding: 0.6rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  .stats {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  body {
+    font-size: 1.6rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+    padding: 1rem 0 0.5rem;
+  }
+
+  .add-form h3 {
+    font-size: 1.6rem;
+  }
+
+  button,
+  select,
+  input {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+  }
+
+  .list li {
+    font-size: 2.5rem;
+  }
+
+  .list li button {
+    font-size: 1.8rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .actions button,
+  .actions select {
+    padding: 0.4rem 1.6rem;
+    font-size: 1rem;
+  }
+
+  .stats {
+    font-size: 1.6rem;
+  }
+}
